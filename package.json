@@ -1,0 +1,212 @@
+{
+  "name": "verdantview",
+  "displayName": "VerdantView",
+  "description": "Visualize your codebase as a living, verdant garden",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "icon": "resources/icon.png",
+  "files": [
+    "out/",
+    "resources/",
+    "images/"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "verdantView",
+          "name": "Verdant Garden",
+          "when": "true"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "verdantView",
+        "contents": "Welcome to Verdant Garden! 🌱\nVisualize your codebase as a living garden.\n[Open Folder](command:vscode.openFolder)\n[Refresh Garden](command:verdantview.refresh)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "verdantview.refresh",
+        "title": "Refresh Garden",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "verdantview.analyzeFile",
+        "title": "Analyze File Health",
+        "icon": "$(search)"
+      },
+      {
+        "command": "verdantview.showMetrics",
+        "title": "Show File Metrics",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "verdantview.openSettings",
+        "title": "Garden Settings",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "verdantview.exportReport",
+        "title": "Export Garden Report",
+        "icon": "$(export)"
+      },
+      {
+        "command": "verdantview.filterByHealth",
+        "title": "Filter by Health",
+        "icon": "$(filter)"
+      },
+      {
+        "command": "verdantview.groupByType",
+        "title": "Group by File Type",
+        "icon": "$(list-tree)"
+      },
+      {
+        "command": "verdantview.toggleFileWatching",
+        "title": "Toggle File Watching",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "verdantview.showGardenSummary",
+        "title": "Show Garden Summary",
+        "icon": "$(graph)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "verdantview.refresh",
+          "when": "view == verdantView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "verdantview.filterByHealth",
+          "when": "view == verdantView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "verdantview.groupByType",
+          "when": "view == verdantView",
+          "group": "navigation@3"
+        },
+        {
+          "command": "verdantview.openSettings",
+          "when": "view == verdantView",
+          "group": "overflow@1"
+        },
+        {
+          "command": "verdantview.exportReport",
+          "when": "view == verdantView",
+          "group": "overflow@2"
+        },
+        {
+          "command": "verdantview.toggleFileWatching",
+          "when": "view == verdantView",
+          "group": "overflow@3"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "verdantview.analyzeFile",
+          "when": "view == verdantView && viewItem == plantItem",
+          "group": "analyze@1"
+        },
+        {
+          "command": "verdantview.showMetrics",
+          "when": "view == verdantView && viewItem == plantItem",
+          "group": "analyze@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Verdant Garden",
+      "properties": {
+        "verdantView.excludePatterns": {
+          "type": "array",
+          "default": ["**/node_modules/**", "**/dist/**", "**/build/**", "**/.git/**", "**/coverage/**"],
+          "description": "Glob patterns for files/folders to exclude from the garden"
+        },
+        "verdantView.includePatterns": {
+          "type": "array",
+          "default": ["**/*"],
+          "description": "Glob patterns for files to include in the garden"
+        },
+        "verdantView.healthThresholds": {
+          "type": "object",
+          "default": {
+            "complexity": { "warning": 10, "critical": 20 },
+            "size": { "warning": 500, "critical": 1000 },
+            "age": { "warning": 30, "critical": 90 }
+          },
+          "description": "Thresholds for determining file health based on various metrics"
+        },
+        "verdantView.showMetrics": {
+          "type": "array",
+          "default": ["complexity", "size", "lastModified"],
+          "description": "Which metrics to display for each file"
+        },
+        "verdantView.groupBy": {
+          "type": "string",
+          "enum": ["none", "type", "health", "folder"],
+          "default": "none",
+          "description": "How to group files in the garden view"
+        },
+        "verdantView.refreshInterval": {
+          "type": "number",
+          "default": 0,
+          "description": "Auto-refresh interval in seconds (0 = disabled)"
+        },
+        "verdantView.enableFileWatching": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic refresh when files change"
+        },
+        "verdantView.showChangeNotifications": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show notifications when files are created, modified, or deleted"
+        },
+        "verdantView.debounceDelay": {
+          "type": "number",
+          "default": 300,
+          "description": "Delay in milliseconds before refreshing after file changes"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.102.0",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.11.0",
+    "eslint": "^8.57.0",
+    "esbuild": "^0.21.5",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.4.5",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0"
+  }
+}
