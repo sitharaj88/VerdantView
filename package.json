@@ -3,7 +3,7 @@
   "displayName": "VerdantView",
   "description": "Visualize your codebase as a living, verdant garden",
   "version": "0.0.1",
-  "publisher": "sitharaj88",
+  "publisher": "sitharaj",
   "author": {
     "name": "sitharaj88",
     "url": "https://github.com/sitharaj88"
@@ -31,11 +31,6 @@
     "vscode": "^1.102.0"
   },
   "icon": "resources/icon.png",
-  "files": [
-    "out/",
-    "resources/",
-    "images/"
-  ],
   "categories": [
     "Other"
   ],

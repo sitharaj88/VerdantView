@@ -12,3 +12,21 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+.git/**
+.DS_Store
+**/.DS_Store
+npm-debug.log
+Thumbs.db
+.npm/
+.cache/
+.temp/
+**/.nyc_output
+**/coverage/
+.github/
+*.vsix
+# ignore source maps, tests, dot‑files
+**/*.map
+**/*.ts
+.vscode/**
+test/**
+images/**
