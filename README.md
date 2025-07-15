@@ -1,10 +1,10 @@
 # 🌱 VerdantView - Visualize Your Codebase as a Living Garden
 
-<div align="right">
-  <img src="images/banner.png" alt="VerdantView Banner" width="400">
-</div>
-
 Transform your codebase into a beautiful, living garden where each file is represented as a plant with health indicators, complexity metrics, and intelligent insights.
+
+<div align="center">
+  <img src="images/banner.png" alt="VerdantView Banner" width="100%" style="max-width: 800px; height: auto;">
+</div>
 
 ## ✨ Features
 
