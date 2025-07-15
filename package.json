@@ -3,6 +3,30 @@
   "displayName": "VerdantView",
   "description": "Visualize your codebase as a living, verdant garden",
   "version": "0.0.1",
+  "publisher": "sitharaj88",
+  "author": {
+    "name": "sitharaj88",
+    "url": "https://github.com/sitharaj88"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sitharaj88/VerdantView.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sitharaj88/VerdantView/issues"
+  },
+  "homepage": "https://github.com/sitharaj88/VerdantView#readme",
+  "keywords": [
+    "code visualization",
+    "code health",
+    "file analysis",
+    "complexity",
+    "garden",
+    "productivity",
+    "typescript",
+    "javascript",
+    "code metrics"
+  ],
   "engines": {
     "vscode": "^1.102.0"
   },

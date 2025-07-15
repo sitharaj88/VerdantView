@@ -165,9 +165,10 @@ This extension is licensed under the [MIT License](LICENSE).
 
 ## 🌟 Support
 
-- 📝 [Report Issues](https://github.com/your-repo/verdantview/issues)
-- 💬 [Discussions](https://github.com/your-repo/verdantview/discussions)
-- 📧 [Contact](mailto:support@verdantview.dev)
+- 📝 [Report Issues](https://github.com/sitharaj88/VerdantView/issues)
+- 💬 [Discussions](https://github.com/sitharaj88/VerdantView/discussions)
+- 🌟 [Star the Project](https://github.com/sitharaj88/VerdantView)
+- 📧 [Contact the Author](https://github.com/sitharaj88)
 
 ---
 
